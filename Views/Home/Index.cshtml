@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<body class="view" style="background-image: url('../images/ldn-city.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; height:100%;">
+
+    <div class="text-center rounded" style="margin-top:100px;background-color:rgba(245,245,245,0.7)">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <h3 class="display-4 text-primary font-weight-bold">Welcome @User.Identity.Name</h3>
+            <p>View your Portfolios' <a asp-controller="Portfolio" asp-action="Portfolios">here</a>.</p>
+        }
+        else
+        {
+            <h1 class="display-4 text-dark font-weight-bold">Welcome to DataProjectC#</h1>
+            <p>
+                <a asp-controller="Account" asp-action="Login">Log in </a>or <a asp-controller="Account" asp-action="Registration">Register </a>to create equity portfolios/strategies your way!
+            </p>
+        }
+
+    </div>
+</body>
+
